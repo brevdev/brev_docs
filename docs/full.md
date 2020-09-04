@@ -778,13 +778,13 @@ Brev containerizes and isolates each project.
 - The file system is read only except for `/tmp`.
 - `/tmp` has a maximum storage of 512MB.
 - Each project has by default 1GB of memory. You can request a maximum of 3GB of memory.
-- The server has been load tested with one client and handled 800 req/sec with median response times of 110ms. Results may vary depending on application. More testing needs to be conducted.
+- The server has been load tested with one client and handled 800 req/sec with median response times of 110ms. Results may vary depending on application. More testing needs to be conducted. We believe the current upper bound is 5,000 req/sec.
 
 > **Technical Detail**: Brev is currently built on top of AWS Lambda where each project is a separate Lambda.
 
 # Limitations
 
-Every tool has its strengths and weaknesses. Here's when we think you should not use Shorstack (we wont stop you if you try).
+Every tool has its strengths and weaknesses. Here's when we think you should not use Brev (we wont stop you if you try).
 
 - Critical applications that need high degrees of resiliency, stability, and security.
 - Servers that require response times < 50ms.
@@ -793,6 +793,9 @@ Every tool has its strengths and weaknesses. Here's when we think you should not
 - CPU or GPU bottlenecked applications.
 - Applications that require long running tasks of more than 15 minutes.
 - Applications that are already in production.
+- Applications that requires throughput of more than 10,000 requests/second
+
+We look to support all these use cases in the near future.
 
 # Release Notes
 

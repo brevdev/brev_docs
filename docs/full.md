@@ -4,7 +4,7 @@ Brev is a development environment that allows you to rapidly build and scale API
 
 #### Getting Started
 
-Note: this is our full documentation. <a href="/#/" target="_blank">Click here if you're looking for the quick (~10min) and recommended way to get started.</a>
+Note: this is our full documentation. <a href="/#/" target="_blank">Looking for the quick getting started guide?</a>
 
 **Highlighted Features**:
 

@@ -1,9 +1,9 @@
 ## Getting Started Guide
 
-### Full Docs
+<!-- ### Full Docs -->
 
-Note: this is our quick and recommended way to get started. It'll take ~10 min to complete.
-<a href="/#/full" target="_blank">Head here if you're looking for the full documentation.</a>
+**Note: this is our quick and recommended way to get started. It'll take ~10 min to complete.
+<a href="/#/full" target="_blank">Head here if you're looking for the full documentation.</a>**
 
 ### A quick summary from the founders
 
@@ -314,3 +314,7 @@ Talk to us!
 Nader:
 cell: 4158180207
 email: nader+docs@brev.dev
+
+### Full Documentation
+
+Click to go to the [full documentation](/full?id=brev)

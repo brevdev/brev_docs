@@ -1,5 +1,10 @@
 ## Getting Started Guide
 
+### Full Docs
+
+Note: this is our quick and recommended way to get started. It'll take ~10 min to complete.
+<a href="/#/full" target="_blank">Head here if you're looking for the full documentation.</a>
+
 ### A quick summary from the founders
 
 Brev is a platform that let's you focus on the essence of your backend while we do all the heavy lifting. Ignore anyting about environments, infrastructure, etc, and just... code. We hope you build something great and make Brev your best friend, it sure is ours :')

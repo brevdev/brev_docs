@@ -2,6 +2,10 @@
 
 Brev is a development environment that allows you to rapidly build and scale APIs. Brev aims to optimize for developer time without the tradeoff of vendor lockin.
 
+#### Getting Started
+
+Note: this is our full documentation. <a href="/#/" target="_blank">Click here if you're looking for the quick (~10min) and recommended way to get started.</a>
+
 **Highlighted Features**:
 
 - **Production ready by default**: Scale without extra configuration or additional knowledge

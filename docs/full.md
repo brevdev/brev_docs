@@ -278,7 +278,7 @@ def get():
       return {"var": variables.THIS_IS_MY_KEY}
   ```
 
-## Shortstorage
+## Shortstorage - Pre-configured Database
 
 Shortstorage is a minimal nosql key value store backed by Dynamodb.
 
@@ -351,13 +351,13 @@ In an endpoint, the following code would add phone numbers to the list!
 The following types can be used as keys to Shortstorage
 
 ```python
-StorageKey = typing.Union[int, str, bool, float]
+StorageKey = Union[int, str, bool, float]
 ```
 
 The following is supported as values returned from Shortstorage
 
 ```python
-StorageValue = typing.Union[StorageKey, None, List, Dict]
+StorageValue = Union[StorageKey, None, List, Dict]
 ```
 
 #### Dependable

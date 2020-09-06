@@ -211,7 +211,7 @@ You can specify file type as `UploadFile` to acess file meta data and handle the
 from fastapi import File, UploadFile
 import file
 
-await def post(uploaded_file: UploadFile = File(...))
+async def post(uploaded_file: UploadFile = File(...))
 
   file_contents = await uploaded_file.read()
 
@@ -227,7 +227,7 @@ from typing import List
 from fastapi import File, UploadFile
 import file
 
-await def post(uploaded_files: List[UploadFile] = File(...))
+async def post(uploaded_files: List[UploadFile] = File(...))
 
   return {"file_names": [f.filename for f in uploaded_files]}
 ```

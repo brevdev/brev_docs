@@ -200,6 +200,7 @@ def post(file_contents: bytes = File(...))
 
   # We're using our built in file uploader
   # see below for documentation on it
+  # https://docs.brev.dev/#/full?id=file-upload
   link = file.upload(file_contents)
 
   return {"file_url": link}
@@ -517,12 +518,15 @@ sms.send("415555555", "hello from Brev!")
 
 Often you want to store files like images, videos, docs, or arbitrary binary data. Use `file.upload` to upload data. A long unique link will be returned that you can use to access the uploaded file. Anyone witgh access to this link will have access to the file.
 
-````python
-file.upload(data: Union[bytes, BinaryIO], content_type: Optional[str] = None, content_disposition: Optional[str] = None, content_encoding: Optional[str] = None) -> str ```
+```python
+file.upload(data: Union[bytes, BinaryIO], content_type: Optional[str] = None, content_disposition: Optional[str] = None, content_encoding: Optional[str] = None) -> str
+```
+
 - Parameters
   - data: a file like object or bytes can be used.
   - content_type: an optional string to specify the [file media type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types). Specifying the correct type allows browsers do download the file correctly.
   - content_disposition: an optional string to specify the [content disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition). This tells browsers if it should treat the file as part of a webpage or as a downloadable attachement.
+  - content_encoding: an optional string to specify the [content encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding).
 - Returns: Returns a complete url with a long unique id. Anyone who has access to this link has access to the file.
 
 # Examples
@@ -553,7 +557,7 @@ def post(photo_meta: AwesomePhoto, file_content = File(...)):
   "location": photo_meta.location,
   "file_url": link
   }
-````
+```
 
 # Brev CLI
 

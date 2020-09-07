@@ -215,7 +215,7 @@ async def post(uploaded_file: UploadFile = File(...))
 
   file_contents = await uploaded_file.read()
 
-  link = file.upload(file_contents)
+  link = file.upload(file_contents, content_type=uploaded_file.content_type)
 
   return {"file_url": link, "file_name": uploaded_file.filename}
 ```
@@ -522,7 +522,7 @@ file.upload(data: Union[bytes, BinaryIO], content_type: Optional[str] = None, co
 - Parameters
   - data: a file like object or bytes can be used.
   - content_type: an optional string to specify the [file media type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types). Specifying the correct type allows browsers do download the file correctly.
-  - content_disposition: an optional string to specify the [content disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition). This tells browsers if it should treat the file as part of a webpage or as a download.
+  - content_disposition: an optional string to specify the [content disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition). This tells browsers if it should treat the file as part of a webpage or as a downloadable attachement.
 - Returns: Returns a complete url with a long unique id. Anyone who has access to this link has access to the file.
 
 # Examples

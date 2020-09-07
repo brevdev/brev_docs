@@ -287,7 +287,7 @@ Persist data between api calls within a project without further configuration. S
 
 > **Technical Detail**: The database supports eventual consistency
 
-> **Technical Detail**: Currently each project uses a single Dynamodb partition key. This works for most use cases but can be a bottle neck for high throughput applications.
+> **Technical Detail**: Currently each collection is implemented as a single Dynamodb partition key. This works for most use cases but can be a bottle neck for high throughput applications.
 
 ### Python Usage
 

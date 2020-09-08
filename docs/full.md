@@ -572,16 +572,10 @@ develop there rather than go configure a new one in the browser. We get that! Th
 
 Probably something like
 
-Mac OS:
-
 ```zsh
-$ brew install stack-cli
-```
+$ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0.tar.gz
 
-Windows:
-
-```zsh
-$ npm install stack-cli
+// ps: If you get direct dependency error, please upgrade pip with `pip install --upgrade pip`
 ```
 
 ## Getting Started

@@ -200,15 +200,19 @@ The next step to your MVP is persisting data between endpoint calls. We can do t
 ```python
     from pydantic import BaseModel
     import sms
+>   import storage
 
     class NewUser(BaseModel):
         name: str # yay types!
         phone: str # yay types!
 
-    def post(user: NewUser):
+>   def post(user: NewUser, storager = storage.storage_context()):
         if state['users'] == None:
             state['users'] = []
->       state['users'].append(user)
+>       if len(storager['users']>0):
+>           storager['users'].append(user)
+>       else:
+>           storager['users'] = [user]
         sms.send("4158180207", f"{user.name} created an account!")
         return {
             "status": f"{user.name} says hi!"
@@ -220,9 +224,10 @@ Every time you hit the endpoint, you'll store the users! If you're in the webapp
 We can make a simple API to build a dashboard with your users. Create a new endpoint with the following:
 
 ```python
+import storage
 
-def get():
-    return {"users": state['users']}
+def get(storager = storage.storage_context()):
+    return {"users": storager['users']}
 
 ```
 

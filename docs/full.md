@@ -200,6 +200,7 @@ def post(file_contents: bytes = File(...))
 
   # We're using our built in file uploader
   # see below for documentation on it
+  # https://docs.brev.dev/#/full?id=file-upload
   link = file.upload(file_contents)
 
   return {"file_url": link}
@@ -211,11 +212,11 @@ You can specify file type as `UploadFile` to acess file meta data and handle the
 from fastapi import File, UploadFile
 import file
 
-await def post(uploaded_file: UploadFile = File(...))
+async def post(uploaded_file: UploadFile = File(...))
 
   file_contents = await uploaded_file.read()
 
-  link = file.upload(file_contents)
+  link = file.upload(file_contents, content_type=uploaded_file.content_type)
 
   return {"file_url": link, "file_name": uploaded_file.filename}
 ```
@@ -227,7 +228,7 @@ from typing import List
 from fastapi import File, UploadFile
 import file
 
-await def post(uploaded_files: List[UploadFile] = File(...))
+async def post(uploaded_files: List[UploadFile] = File(...))
 
   return {"file_names": [f.filename for f in uploaded_files]}
 ```
@@ -278,7 +279,7 @@ def get():
       return {"var": variables.THIS_IS_MY_KEY}
   ```
 
-## Shortstorage
+## Shortstorage - Pre-configured Database
 
 Shortstorage is a minimal nosql key value store backed by Dynamodb.
 
@@ -286,7 +287,7 @@ Persist data between api calls within a project without further configuration. S
 
 > **Technical Detail**: The database supports eventual consistency
 
-> **Technical Detail**: Currently each project uses a single Dynamodb partition key. This works for most use cases but can be a bottle neck for high throughput applications.
+> **Technical Detail**: Currently each collection is implemented as a single Dynamodb partition key. This works for most use cases but can be a bottle neck for high throughput applications.
 
 ### Python Usage
 
@@ -351,13 +352,13 @@ In an endpoint, the following code would add phone numbers to the list!
 The following types can be used as keys to Shortstorage
 
 ```python
-StorageKey = typing.Union[int, str, bool, float]
+StorageKey = Union[int, str, bool, float]
 ```
 
 The following is supported as values returned from Shortstorage
 
 ```python
-StorageValue = typing.Union[StorageKey, None, List, Dict]
+StorageValue = Union[StorageKey, None, List, Dict]
 ```
 
 #### Dependable
@@ -518,11 +519,14 @@ sms.send("415555555", "hello from Brev!")
 Often you want to store files like images, videos, docs, or arbitrary binary data. Use `file.upload` to upload data. A long unique link will be returned that you can use to access the uploaded file. Anyone witgh access to this link will have access to the file.
 
 ```python
-file.upload(data: Union[bytes, BinaryIO]) -> str
+file.upload(data: Union[bytes, BinaryIO], content_type: Optional[str] = None, content_disposition: Optional[str] = None, content_encoding: Optional[str] = None) -> str
 ```
 
 - Parameters
   - data: a file like object or bytes can be used.
+  - content_type: an optional string to specify the [file media type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types). Specifying the correct type allows browsers do download the file correctly.
+  - content_disposition: an optional string to specify the [content disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition). This tells browsers if it should treat the file as part of a webpage or as a downloadable attachement.
+  - content_encoding: an optional string to specify the [content encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding).
 - Returns: Returns a complete url with a long unique id. Anyone who has access to this link has access to the file.
 
 # Examples
@@ -772,13 +776,13 @@ Brev containerizes and isolates each project.
 - The file system is read only except for `/tmp`.
 - `/tmp` has a maximum storage of 512MB.
 - Each project has by default 1GB of memory. You can request a maximum of 3GB of memory.
-- The server has been load tested with one client and handled 800 req/sec with median response times of 110ms. Results may vary depending on application. More testing needs to be conducted.
+- The server has been load tested with one client and handled 800 req/sec with median response times of 110ms. Results may vary depending on application. More testing needs to be conducted. We believe the current upper bound is 5,000 req/sec.
 
 > **Technical Detail**: Brev is currently built on top of AWS Lambda where each project is a separate Lambda.
 
 # Limitations
 
-Every tool has its strengths and weaknesses. Here's when we think you should not use Shorstack (we wont stop you if you try).
+Every tool has its strengths and weaknesses. Here's when we think you should not use Brev (we wont stop you if you try).
 
 - Critical applications that need high degrees of resiliency, stability, and security.
 - Servers that require response times < 50ms.
@@ -787,6 +791,9 @@ Every tool has its strengths and weaknesses. Here's when we think you should not
 - CPU or GPU bottlenecked applications.
 - Applications that require long running tasks of more than 15 minutes.
 - Applications that are already in production.
+- Applications that requires throughput of more than 10,000 requests/second
+
+We look to support all these use cases in the near future.
 
 # Release Notes
 

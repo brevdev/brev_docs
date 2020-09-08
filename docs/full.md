@@ -570,7 +570,7 @@ develop there rather than go configure a new one in the browser. We get that! Th
 
 ## Installation
 
-Probably something like
+Install the CLI with pip
 
 ```zsh
 $ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0.tar.gz

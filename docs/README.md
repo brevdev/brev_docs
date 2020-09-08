@@ -63,12 +63,13 @@ You can get started right away by logging in to https://app.brev.dev, or set up 
 
 #### CLI Setup
 
-on Mac:
+Install the CLI with pip:
 
-> brew install getBrev
+```zsh
+$ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0.tar.gz
 
-on Windows:
-The CLI is supported on WSL. Please follow the instructions here to install.
+// ps: If you get direct dependency error, please upgrade pip with `pip install --upgrade pip`
+```
 
 ### Create a basic endpoint
 

@@ -60,9 +60,9 @@ Install the CLI with pip:
 
 ```zsh
 $ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0.tar.gz
-
-// ps: If you get direct dependency error, please upgrade pip with `pip install --upgrade pip`
 ```
+
+> **Note** ps: If you get direct dependency error, please upgrade pip with `pip install --upgrade pip`
 
 ### Create a basic endpoint
 
@@ -188,7 +188,7 @@ Hit the endpoint again and you should get a text!
 
 In just a few minutes you were able to get live, deployed, endpoints and SMS functionality! No configuration needed :tada:
 
-### Use storage to persist data
+### Storage - Persist data
 
 The next step to your MVP is persisting data between endpoint calls. We can do this with the Shortstorage object.
 <a href="/#/full?id=shortstorage" target="_blank">Read more about Shortstorage here.</a>

@@ -2,19 +2,10 @@
 
 <!-- ### Full Docs -->
 
+Brev lets you build a production server in seconds without worrying about frameworks, hosting, deploying, or scaling.
+
 **Note: this is our quick and recommended way to get started. It'll take ~10 min to complete.
 <a href="/#/full" target="_blank">Head here if you're looking for the full documentation.</a>**
-
-### A quick summary from the founders
-
-Brev is a platform that let's you focus on the essence of your backend while we do all the heavy lifting. Ignore anyting about environments, infrastructure, etc, and just... code. We hope you build something great and make Brev your best friend, it sure is ours :')
-
-To clarify: this is not just an abstraction, it's a powerful developer tool thats genuinely writing all of the backend/infrastructure code behind the scenes, allowing you to return your mindshare to your product and your customers!
-
-We totally get that sometimes, frameworks are just too limiting. We've been there, so we designed Brev from the start with ability to eject. At any time, you can go under the hood, or even eject your code, including all of the backend code we wrote for you, and go host it yourself. If you do this, we'd love to know where we fell... well.. short :)
-
-We hope you love it
--Nader & Alec
 
 **Highlighted Features**:
 
@@ -31,10 +22,10 @@ We hope you love it
 
 Our roadmap is constantly evolving with feedback from our users. Here are some of the things we are thinking about.
 
-- **Eject:** Eject your project at any point in your project to host it yourself and get under the hood. Access all the configuration details and more without worrying about them at the start of your project.
-- **Project Environments:** Create multiple different isolated environments to develop or experiment on your APIs ex. (staging, prod, dev)
+- **Eject:** Eject your project at any point to host it yourself and get under the hood. Access all the configuration details and source code without worrying about them at the start of your project.
+- **Project Environments:** Create multiple isolated environments to develop on ex. (staging, prod, dev)
 - **Cron Jobs** Create and manage cron jobs without any extra setup.
-- **Application monitoring, alerting:** get crash alerts and performance monitoring out of the box or hook up (Sentry, APM, etc).
+- **Application monitoring, alerting:** Get crash alerts and performance monitoring out of the box or hook up (Sentry, APM, etc).
 - **Robust Logging and Querying** Search and query for relevant logs to quickly debug your application
 
 Use this quickstart guide to jump into Brev. If you have any lingering questions, [please e-mail us](nader+docs@brev.dev)
@@ -51,15 +42,17 @@ Use this quickstart guide to jump into Brev. If you have any lingering questions
 
 ### This doc
 
-will go over the core features of Brev by building a sign up form that texts you everytime someone signs up.
+Will go over the core features of Brev by building a sign up form that texts you everytime someone signs up.
 
 **7 steps, eta: 10 min**
 
 ### Setup
 
+- Requires a Brev account.
+
 #### Webapp Setup
 
-You can get started right away by logging in to https://app.brev.dev, or set up the CLI.
+Login to https://app.brev.dev
 
 #### CLI Setup
 
@@ -80,17 +73,19 @@ A huge benefit of Brev is that the concept of deploying has been abstracted. Sim
 From the webapp: click "+" to create an endpoint. Give it a name, and click save!
 From the CLI: type `stack add endpoint <your EP name>`
 
-Boom, your endpoint is saved and hosted!
+Your endpoint is saved and hosted!
 
-> Webapp: At the top of the code editor, you'll see the hoted URL. It's ready to go and be used in any app you're building. Go to "home" and you'll see all your endpoints, including this one.
+> **Webapp**: At the top of the code editor, you'll see the hoted URL. It's ready to go and be used in any app you're building. Go to "home" and you'll see all your endpoints, including this one.
 
-> CLI: You should now have a Brev directory at `~/GetBrev`. Creating a new endpoint will add a python file for the endpoint in that directory. `stack list` will get you the URLs for every endpoint. If something didn't work, make sure to login and initialize! `stack login` followed by `stack init`.
+> **CLI**: You should now have a Brev directory at `~/GetBrev`. Creating a new endpoint will add a python file for the endpoint in that directory. `stack list` will get you the URLs for every endpoint. If something didn't work, make sure to login and initialize! `stack login` followed by `stack init`.
 
 Now let's make the endpoint do something.
 
 ### GET request with a query args
 
-To accept a query argument, simply add the argument to the function and use it like a variable!
+To accept a parameter to your endpoint as a query argument, simply add the argument to the function and use it like a variable!
+
+> **Note**: Query arguments are key value pairs found at the end of urls. ex (`?query_arg=123&other_query_arg=456`)
 
 ```python
 def get(greeting):
@@ -207,13 +202,9 @@ The next step to your MVP is persisting data between endpoint calls. We can do t
         name: str # yay types!
         phone: str # yay types!
 
->   def post(user: NewUser, storager = storage.storage_context()):
-        if state['users'] == None:
-            state['users'] = []
->       if len(storager['users']>0):
->           storager['users'].append(user)
->       else:
->           storager['users'] = [user]
+>   def post(user: NewUser, user_store = storage.storage_context("users")):
+        user_store[user.phone] = user.dict()
+
         sms.send("4158180207", f"{user.name} created an account!")
         return {
             "status": f"{user.name} says hi!"
@@ -227,8 +218,8 @@ We can make a simple API to build a dashboard with your users. Create a new endp
 ```python
 import storage
 
-def get(storager = storage.storage_context()):
-    return {"users": storager['users']}
+def get(user_store = storage.storage_context("users")):
+    return {"users": list(user_store['users'].items())}
 
 ```
 
@@ -249,10 +240,8 @@ Let's move the storage logic to a shared code function
 ```python
 # shared code
 
-def storeUser(user)
-    if state['users'] == None:
-        state['users'] = []
-    state['users'].append(user)
+def store_user(user, store)
+    store[user.phone] = user.dict()
 
 ```
 
@@ -267,8 +256,8 @@ Now update the endpoint to use this function. Don't forget the import!
         name: str # yay types!
         phone: str # yay types!
 
-    def post(user: NewUser):
->       shared.storeUser(user)
+    def post(user: NewUser, user_store = storage.storage_context("users")):
+>       shared.store_user(user, user_store)
         sms.send("4158180207", f"{user.name} created an account!")
         return {
             "status": f"{user.name} says hi!"
@@ -300,8 +289,8 @@ Now we just need to import variables in our code and we can use the values!
         name: str # yay types!
         phone: str # yay types!
 
-    def post(user: NewUser):
-        shared.storeUser(user)
+    def post(user: NewUser, user_store = storage.storage_context("users")):
+        shared.store_user(user, user_store)
 >       sms.send(variables.PHONENUMBER, f"{user.name} created an account!")
         return {
             "status": f"{user.name} says hi!"

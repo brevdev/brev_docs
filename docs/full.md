@@ -194,7 +194,7 @@ To receive files sent as form data you can declare an argument with default valu
 
 ```python
 from fastapi import File
-import file
+import file_storage
 
 def post(file_contents: bytes = File(...))
 
@@ -210,7 +210,7 @@ You can specify file type as `UploadFile` to acess file meta data and handle the
 
 ```python
 from fastapi import File, UploadFile
-import file
+import file_storage
 
 async def post(uploaded_file: UploadFile = File(...))
 
@@ -226,7 +226,7 @@ To handle multiple uploaded files, type hint the parameter as a `List`.
 ```python
 from typing import List
 from fastapi import File, UploadFile
-import file
+import file_storage
 
 async def post(uploaded_files: List[UploadFile] = File(...))
 

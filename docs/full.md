@@ -296,7 +296,7 @@ Shorstorage implements a very similar API to [python's Dictionary type](https://
 Access Shortstorage by importing `storage` and using `storage_context` as the default value for a keyword argument in an endpoint.
 
 ```python
-import storage
+import global_storage
 
 def get(storager = storage.storage_context()):
   val = storager["key"]  # get item
@@ -319,7 +319,7 @@ def get(storager = storage.storage_context()):
 By default when using Shortstorage all items are grouped under the `default` collection. To group objects together, declare different collections by specificying the name of the collection as the parameter of `storage_context`.
 
 ```python
-from storage import storage_context
+from global_storage import storage_context
 
 def get(user_store = storage_context("users"), item_store = storage_context("items")):
   user_id = "user_id"
@@ -330,20 +330,6 @@ def get(user_store = storage_context("users"), item_store = storage_context("ite
 
   return {"email": email, "items": items}
 ```
-
-### Using the View Editor
-
-1. Hover your cursor over storage and click on the '+' icon that appears
-   ![image](static/docsMedia/step1.png ":size=550")
-2. Name this list. We'll call it numbers
-   ![image](static/docsMedia/step2.png ":size=550")
-3. Note the data type defaults to NULL. Hover your cursor over NULL and click on the edit(pencil) that appears
-   ![image](static/docsMedia/step3.png ":size=550")
-4. Replace null with empty brackets for a list and click the purple check on the right. Make sure the click the check next to [ ... ] to save the data type as a list instead of string
-   ![image](static/docsMedia/step4.png ":size=550")
-
-Yay! Your storage now has a list called numbers ready to use :)
-In an endpoint, the following code would add phone numbers to the list!
 
 ### Shortstorage API reference
 

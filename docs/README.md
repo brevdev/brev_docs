@@ -1,7 +1,5 @@
 ## Getting Started Guide
 
-<!-- ### Full Docs -->
-
 Brev lets you build a production server in seconds without worrying about frameworks, hosting, deploying, or scaling.
 
 **Note: this is our quick and recommended way to get started. It'll take ~10 min to complete.
@@ -11,7 +9,6 @@ Brev lets you build a production server in seconds without worrying about framew
 
 - **Production ready by default**: Scale without extra configuration or additional knowledge
 - **Deployless**: Deployments just happen instantly when you save.
-- **Configureless**: We handle the environments and infrastructure. Whether you're coding from the CLI and your local environment or the web app, the environment is ready to go.
 - **Ergonomic request/response validation**: Use python3 type hints to define the shape of your request args and body.
 - **Openapi by default**: Openapi specification is automatically generated for you as you write and annotate your endpoints
 - **Secrets management**: Store your applications secrets securely without extra effort
@@ -23,10 +20,10 @@ Brev lets you build a production server in seconds without worrying about framew
 Our roadmap is constantly evolving with feedback from our users. Here are some of the things we are thinking about.
 
 - **Eject:** Eject your project at any point to host it yourself and get under the hood. Access all the configuration details and source code without worrying about them at the start of your project.
-- **Project Environments:** Create multiple isolated environments to develop on ex. (staging, prod, dev)
+- **Project Environments:** Create multiple isolated environments to develop on ex. (staging, prod, dev) and promote between.
 - **Cron Jobs** Create and manage cron jobs without any extra setup.
 - **Application monitoring, alerting:** Get crash alerts and performance monitoring out of the box or hook up (Sentry, APM, etc).
-- **Robust Logging and Querying** Search and query for relevant logs to quickly debug your application
+- **Robust Logging and Tracing** Search and query for relevant logs to quickly debug your application and trace events.
 
 Use this quickstart guide to jump into Brev. If you have any lingering questions, [please e-mail us](nader+docs@brev.dev)
 
@@ -40,11 +37,11 @@ Use this quickstart guide to jump into Brev. If you have any lingering questions
 
 [ ] Public launch: Stable for enterprise use cases.
 
-### This doc
+### What we will accomplish
 
-Will go over the core features of Brev by building a sign up form that texts you everytime someone signs up.
+We will go over the core features of Brev by building a sign up form that texts you everytime someone signs up.
 
-**7 steps, eta: 10 min**
+**7 steps, eta: 10 minutes**
 
 ### Setup
 
@@ -68,7 +65,9 @@ $ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0
 
 **Step 1 of 7**
 
-A huge benefit of Brev is that the concept of deploying has been abstracted. Simply create an endpoint, and by default, it's available.
+With Brev, yoru code is deployed by default. Simply create an endpoint, and it's ready to be consumed for your use case at any\* scale.
+
+> \*Checkout our current [scale limitations](https://docs.brev.dev/#/full?id=limitations) and how you can extend them.
 
 From the webapp: click "+" to create an endpoint. Give it a name, and click save!
 From the CLI: type `stack add endpoint <your EP name>`

@@ -1,6 +1,6 @@
 # Brev
 
-Brev is a development environment that allows you to rapidly build and scale APIs. Brev aims to optimize for developer time without the tradeoff of vendor lockin.
+Brev lets you build a production server in seconds without worrying about frameworks, hosting, deploying, or scaling. Brev aims to optimize for developer time without the tradeoff of vendor lockin.
 
 #### Getting Started
 
@@ -516,7 +516,7 @@ sms.send("415555555", "hello from Brev!")
 
 ## File Upload
 
-Often you want to store files like images, videos, docs, or arbitrary binary data. Use `file.upload` to upload data. A long unique link will be returned that you can use to access the uploaded file. Anyone witgh access to this link will have access to the file.
+Often you want to store files like images, videos, docs, or arbitrary binary data. Use `import file_storage` to upload data. A long unique link will be returned that you can use to access the uploaded file. Anyone witgh access to this link will have access to the file.
 
 ```python
 file.upload(data: Union[bytes, BinaryIO], content_type: Optional[str] = None, content_disposition: Optional[str] = None, content_encoding: Optional[str] = None) -> str
@@ -528,6 +528,34 @@ file.upload(data: Union[bytes, BinaryIO], content_type: Optional[str] = None, co
   - content_disposition: an optional string to specify the [content disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition). This tells browsers if it should treat the file as part of a webpage or as a downloadable attachement.
   - content_encoding: an optional string to specify the [content encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding).
 - Returns: Returns a complete url with a long unique id. Anyone who has access to this link has access to the file.
+
+## Roboflow
+
+Infer [Roboflow](https://roboflow.com/) models with `import roboflow`.
+
+```python
+roboflow.infer(
+    model_id: str,
+    image_base64: str,
+    format: Union[roboflow.Format, str] = roboflow.Format.json,
+    access_token: Optional[str] = None,
+) -> requests.Response
+```
+
+- Parameters
+  - model_id: A file like object or bytes can be used.
+  - image_base64: The image data in base64.
+  - format: A roboflow.Format type or string "json", "image"
+  - access_token: The optional roboflow access token. If not provided here, `ROBOFLOW_ACCESS_TOKEN` must be set as a Variable.
+- Returns: The requests.Response from the https://infer.roboflow.ai/{model} endpoint. ([See request libarary](https://requests.readthedocs.io/en/master/))
+
+```python
+roboflow.Format: Enum
+```
+
+- An enum with values
+  - json = "json"
+  - image = "image"
 
 # Examples
 

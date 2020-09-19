@@ -128,12 +128,12 @@ For query arguments in the previous example, we just used a variable, but JSON b
 from pydantic import BaseModel
 
 # type definition of incoming JSON body
-class NewUser(BaseModel):
+class User(BaseModel):
     name: str # yay types!
     phone: str # yay types!
 
 # pass it in to function
-def post(user: NewUser):
+def post(user: User):
     return {
         "status": f"{user.name} says hi!"
     }
@@ -172,11 +172,11 @@ Brev comes preconfigured with a lot of out-of-the-box functionality such as SMS.
 from pydantic import BaseModel
 import sms
 
-class NewUser(BaseModel):
+class User(BaseModel):
     name: str # yay types!
     phone: str # yay types!
 
-def post(user: NewUser):
+def post(user: User):
     sms.send("4158180207", f"{user.name} created an account!")
     return {
         "status": f"{user.name} says hi!"
@@ -195,13 +195,13 @@ The next step to your MVP is persisting data between endpoint calls. We can do t
 ```python
     from pydantic import BaseModel
     import sms
->   import global_storage
+>   from global_storage import storage_context
 
-    class NewUser(BaseModel):
+    class User(BaseModel):
         name: str # yay types!
         phone: str # yay types!
 
->   def post(user: NewUser, user_store = storage.storage_context("users")):
+>   def post(user: User, user_store = storage_context("users")):
         user_store[user.phone] = user.dict()
 
         sms.send("4158180207", f"{user.name} created an account!")
@@ -215,10 +215,11 @@ Every time you hit the endpoint, you'll store the users! If you're in the webapp
 We can make a simple API to build a dashboard with your users. Create a new endpoint with the following:
 
 ```python
-import global_storage
+from global_storage import storage_context
 
-def get(user_store = storage.storage_context("users")):
-    return {"users": list(user_store['users'].items())}
+def get(user_store = storage_context("users")):
+    all_users = user_store['users'].items()
+    return {"users": all_users}
 
 ```
 
@@ -248,14 +249,15 @@ Now update the endpoint to use this function. Don't forget the import!
 
 ```python
     from pydantic import BaseModel
+    from global_storage import storage_context
     import sms
 >   import shared
 
-    class NewUser(BaseModel):
+    class User(BaseModel):
         name: str # yay types!
         phone: str # yay types!
 
-    def post(user: NewUser, user_store = storage.storage_context("users")):
+    def post(user: User, user_store = storage_context("users")):
 >       shared.store_user(user, user_store)
         sms.send("4158180207", f"{user.name} created an account!")
         return {
@@ -280,15 +282,16 @@ Now we just need to import variables in our code and we can use the values!
 
 ```python
     from pydantic import BaseModel
+    from global_storage import storage_context
     import sms
     import shared
 >   import variables
 
-    class NewUser(BaseModel):
+    class User(BaseModel):
         name: str # yay types!
         phone: str # yay types!
 
-    def post(user: NewUser, user_store = storage.storage_context("users")):
+    def post(user: User, user_store = storage_context("users")):
         shared.store_user(user, user_store)
 >       sms.send(variables.PHONENUMBER, f"{user.name} created an account!")
         return {

@@ -296,16 +296,16 @@ Shorstorage implements a very similar API to [python's Dictionary type](https://
 Access Shortstorage by importing `storage` and using `storage_context` as the default value for a keyword argument in an endpoint.
 
 ```python
-import global_storage
+from global_storage import storage_context
 
-def get(storager = storage.storage_context()):
-  val = storager["key"]  # get item
+def get(store = storage_context()):
+  val = store["key"]  # get item
 
-  val = storager.get("key", "default")  # get item and return 'default' if 'key' does not exist
+  val = store.get("key", "default")  # get item and return 'default' if 'key' does not exist
 
-  storager["key"] = "value"  # set 'value' to 'key'
+  store["key"] = "value"  # set 'value' to 'key'
 
-  val = storager.setdefault("key", "value")  # set 'value' if 'key' does not exist return stored value
+  val = store.setdefault("key", "value")  # set 'value' if 'key' does not exist return stored value
 
   return {"value": val}
 ```

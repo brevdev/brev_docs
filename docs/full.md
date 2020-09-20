@@ -53,7 +53,7 @@ Brev lets you create projects. In each project, you'll find:
 
 ## Quickstart
 
-This requires a shorstack account. [Create one here](https://app.brev.dev/signup)!
+This requires a brev account. [Create one here](https://app.brev.dev/signup)!
 
 Lets create a hello world project.
 
@@ -174,7 +174,7 @@ def post(item: ItemInBody):
   return item  # {"name": "Alec", "email": "email@mail.com", "phone": "123-456-7890"}
 ```
 
-To test this we can use a tool like [Postman](https://www.postman.com), the Brev CLI, or you can use Shorstack's `endpoint runner` at the bottom of the editor. Select the `json body` editor and add a test request body and make sure the http method selected is `POST`. You can use this as a test request body:
+To test this we can use a tool like [Postman](https://www.postman.com), the Brev CLI, or you can use Brev's `endpoint runner` at the bottom of the editor. Select the `json body` editor and add a test request body and make sure the http method selected is `POST`. You can use this as a test request body:
 
 ```json
 { "name": "Alec", "email": "email@mail.com", "phone": "123-456-7890" }
@@ -598,14 +598,14 @@ $ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0
 
 ## Getting Started
 
-Now that you have the CLI installed, you'll need to initialize to your stack account.
+Now that you have the CLI installed, you'll need to initialize to your brev account.
 
 ### Authenticate:
 
 First authenticate yourself
 
 ```zsh
-stack init
+brev login
 ```
 
 ### Initialize
@@ -613,7 +613,7 @@ stack init
 Once authenticated, you'll need to initialize
 
 ```zsh
-stack initialize
+brev init
 ```
 
 This will create a local directory at ~/GetBrev with a folder per projecct. In each project folder, you'll find the endpoints, your shared code, and variables as individual .py files.
@@ -623,13 +623,13 @@ This will create a local directory at ~/GetBrev with a folder per projecct. In e
 Similar to the project dropdown from the web app, you'll need to specify which project you're working with. This allows you to add packages, variables/secrets, and endpoints; respecting each project's isolated runtime.
 
 ```zsh
-stack set ProjectName
+brev set ProjectName
 ```
 
 You can view active environment settings with the `status` command:
 
 ```zsh
-stack status
+brev status
 ```
 
 NOTE: We highly recommend setting up Zsh & autocomplete. It'll let you tab through commands like butter
@@ -642,22 +642,22 @@ NOTE: We highly recommend setting up Zsh & autocomplete. It'll let you tab throu
   ex: to install numpy
 
 ```zsh
-stack add package numpy
-stack remove package numpy
+brev add package numpy
+brev remove package numpy
 ```
 
 - `Endpoints`: You can create new endpoints in the active project
 
 ```zsh
-stack add endpoint MyEndpointName
-stack remove endpoint MyEndpointName
+brev add endpoint MyEndpointName
+brev remove endpoint MyEndpointName
 ```
 
 - `Variables`: You can add variables/secrets from [the app](https://app.brev.dev/variables) or right from the command line
 
 ```zsh
-stack add variable NewVar
-stack remove variable NewVar
+brev add variable NewVar
+brev remove variable NewVar
 ```
 
 Then follow the prompt for the variable value. Note: while you can update the value at any time, we never reveal the value for your security.
@@ -667,13 +667,13 @@ Then follow the prompt for the variable value. Note: while you can update the va
 You can create a new project with
 
 ```zsh
-stack new project MyNewProject
+brev new project MyNewProject
 ```
 
-Note: this does not set it as the active project. You'll need to use `stack set` for that:
+Note: this does not set it as the active project. You'll need to use `brev set` for that:
 
 ```zsh
-stack set project MyNewProject
+brev set project MyNewProject
 ```
 
 ## Running
@@ -685,19 +685,19 @@ You can use the `list` command to list available projects, packages, and endpoin
 View available projects:
 
 ```zsh
-stack list project
+brev list project
 ```
 
 View packages added to the environment. You can `remove` them or `add` new ones.
 
 ```zsh
-stack list package
+brev list package
 ```
 
 View endpoints and their associated URLs. You can execute them with `run`.
 
 ```zsh
-stack list endpoint
+brev list endpoint
 ```
 
 ### Run
@@ -705,7 +705,7 @@ stack list endpoint
 You can execute any endpoint right from the terminal.
 
 ```zsh
-stack run MyEndpoint [GET, POST, PUT, DELETE] --args --body *.json
+brev run MyEndpoint [GET, POST, PUT, DELETE] --args --body *.json
 ```
 
 The third argument is the HTTP request type.
@@ -715,7 +715,7 @@ Add any json file in the request body with --body or -b
 To make a GET request:
 
 ```zsh
-stack run MyEndpoint GET --a  message=Hello
+brev run MyEndpoint GET --a  message=Hello
 ```
 
 Makes a GET call to `/MyEndpoint?message=Hello`
@@ -723,7 +723,7 @@ Makes a GET call to `/MyEndpoint?message=Hello`
 To make a POST request:
 
 ```zsh
-stack run MyEndpoint POST --b  body.json
+brev run MyEndpoint POST --b  body.json
 ```
 
 Makes a POST call to `/MyEndpoint` with the body.json
@@ -734,13 +734,13 @@ After running an endpoint, Brev automatically collects logs and standard out! Vi
 To view all the logs of a project, run:
 
 ```zsh
-stack logs
+brev logs
 ```
 
 You can also view the logs of an individual endpoint
 
 ```zsh
-stack logs endpoint MyEndpoint
+brev logs endpoint MyEndpoint
 ```
 
 ## Syncronizing
@@ -752,7 +752,7 @@ Now that you've made changes locally, it's time to save them so they're syncroni
 To view a difference of what's syncronized with remote, run `diff`:
 
 ```zsh
-stack diff
+brev diff
 ```
 
 ### Override
@@ -762,20 +762,20 @@ Use `override` to sync the changes.
 To override your local changes with those saved to your Brev account, override your local:
 
 ```zsh
-stack override local
+brev override local
 ```
 
 To override your remote changes with those saved to your local environment, override your remote:
 
 ```zsh
-stack override remote
+brev override remote
 ```
 
 Note: override only syncronizes your active project. You can set the active project with `set`
 
 # Principles
 
-Shorstack is developed with two principles in mind.
+Brev is developed with two principles in mind.
 
 - Developer time is most valuable
 - Abstraction is compromise

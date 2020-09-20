@@ -70,13 +70,13 @@ With Brev, yoru code is deployed by default. Simply create an endpoint, and it's
 > \*Checkout our current [scale limitations](https://docs.brev.dev/#/full?id=limitations) and how you can extend them.
 
 From the webapp: click "+" to create an endpoint. Give it a name, and click save!
-From the CLI: type `stack add endpoint <your EP name>`
+From the CLI: type `brev add endpoint <your EP name>`
 
 Your endpoint is saved and hosted!
 
 > **Webapp**: At the top of the code editor, you'll see the hoted URL. It's ready to go and be used in any app you're building. Go to "home" and you'll see all your endpoints, including this one.
 
-> **CLI**: You should now have a Brev directory at `~/GetBrev`. Creating a new endpoint will add a python file for the endpoint in that directory. `stack list` will get you the URLs for every endpoint. If something didn't work, make sure to login and initialize! `stack login` followed by `stack init`.
+> **CLI**: You should now have a Brev directory at `~/GetBrev`. Creating a new endpoint will add a python file for the endpoint in that directory. `brev list` will get you the URLs for every endpoint. If something didn't work, make sure to login and initialize! `brev login` followed by `brev init`.
 
 Now let's make the endpoint do something.
 
@@ -95,7 +95,7 @@ Now let's hit the endpoint!
 
 > In the webapp: below the code editor, you can use the endpoint runner. Select GET and query params. Type greeting into the table, and hola as the value. Brev might've predicted the query args and type it in for you.
 
-> In the CLI: `stack run endpointName GET --args greeting=hola`. Note if you set up shell autocomplete, you can hit tab and the CLI will suggest the available endpoints and HTTP request types! Also, you can type -a instead of --args.
+> In the CLI: `brev run endpointName GET --args greeting=hola`. Note if you set up shell autocomplete, you can hit tab and the CLI will suggest the available endpoints and HTTP request types! Also, you can type -a instead of --args.
 > Note: you can also just open a new tab and manually type in the query argument.
 
 The response should be as follows:
@@ -148,7 +148,7 @@ Now let's test it with the following JSON body:
 }
 ```
 
-> CLI: create a new json file `touch input.json` and edit it with the contents. `stack run MyEndpoint POST --body /pathTo/input.json`. With shell autocomplete enabled, you can autocomplete the endpoint name, the HTTP request type, and the available json files.
+> CLI: create a new json file `touch input.json` and edit it with the contents. `brev run MyEndpoint POST --body /pathTo/input.json`. With shell autocomplete enabled, you can autocomplete the endpoint name, the HTTP request type, and the available json files.
 
 > Webapp: select POST instead of GET from the drop down, select JSON for the payload type.
 
@@ -274,7 +274,7 @@ This is a bad practice, so we can use Variables!
 <a href="/#/full?id=variables" target="_blank">Read more here.</a>
 (P.S. that is my real number, shoot me a text and let me know how it's going!)
 
-> CLI: run `stack add variable PHONENUMBER` and it will prompt you for the value.
+> CLI: run `brev add variable PHONENUMBER` and it will prompt you for the value.
 
 > Web app: Click on `Variables` on the nav bar on the left. Add the new variable to the table.
 

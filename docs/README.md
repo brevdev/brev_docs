@@ -31,7 +31,7 @@ Use this quickstart guide to jump into Brev. If you have any lingering questions
 
 [✓] Alpha: We are testing Brev with a small set of users.
 
-[✓] Public Alpha: Join our waitlist and we will get you access as soon as we can. We hope you build something great! The platform still has kinks please help us iron them out.
+[✓] Private Alpha: Join our waitlist and we will get you access as soon as we can. We hope you build something great! The platform still has kinks please help us iron them out.
 
 [ ] Public Beta: Anyone can create an account. API becomes stable.
 
@@ -65,7 +65,7 @@ $ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0
 
 **Step 1 of 7**
 
-With Brev, yoru code is deployed by default. Simply create an endpoint, and it's ready to be consumed for your use case at any\* scale.
+With Brev, your code is deployed by default. Simply create an endpoint, and it's ready to be consumed for your use case at any\* scale.
 
 > \*Checkout our current [scale limitations](https://docs.brev.dev/#/full?id=limitations) and how you can extend them.
 
@@ -74,7 +74,7 @@ From the CLI: type `brev add endpoint <your EP name>`
 
 Your endpoint is saved and hosted!
 
-> **Webapp**: At the top of the code editor, you'll see the hoted URL. It's ready to go and be used in any app you're building. Go to "home" and you'll see all your endpoints, including this one.
+> **Webapp**: At the top of the code editor, you'll see the hosted URL. It's ready to go and be used in any app you're building. Go to "home" and you'll see all your endpoints, including this one.
 
 > **CLI**: You should now have a Brev directory at `~/GetBrev`. Creating a new endpoint will add a python file for the endpoint in that directory. `brev list` will get you the URLs for every endpoint. If something didn't work, make sure to login and initialize! `brev login` followed by `brev init`.
 

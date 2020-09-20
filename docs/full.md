@@ -33,7 +33,7 @@ Use this quickstart guide to jump into Brev. If you have any lingering questions
 
 [✓] Alpha: We are testing Brev with a small set of users.
 
-[✓] Public Alpha: Join our waitlist and we will get you access as soon as we can. We hope you build something great! The platform still has kinks please help us iron them out.
+[✓] Private Alpha: Join our waitlist and we will get you access as soon as we can. We hope you build something great! The platform still has kinks please help us iron them out.
 
 [ ] Public Beta: Anyone can create an account. API becomes stable.
 
@@ -281,9 +281,7 @@ def get():
 
 ## Shortstorage - Pre-configured Database
 
-Shortstorage is a minimal nosql key value store backed by Dynamodb.
-
-Persist data between api calls within a project without further configuration. Shorstorage is not designed for high throughput applications. We recommend configuring a database designed for you applications read/write profile.
+Shortstorage is a minimal nosql key value store backed by Dynamodb. Persist data between api calls within a project without any configuration. Shortstorage reliably handles throughput of 5000 requests/second.
 
 > **Technical Detail**: The database supports eventual consistency
 
@@ -545,9 +543,29 @@ roboflow.Format: Enum
 
 # Examples
 
+<!--
 ## Upload an Image
 
-...
+... (coming soon) -->
+
+## Data Aggregation
+
+A common Brev use case is to collect data from many sources, consolidate or modify it, and return it. The python `requests` library is perfect for this.
+
+```python
+import requests
+
+def get():
+  resp = requests.get(f"https://api.weatherapi.com/v1/current.json?key={variables.WEATHER_API}&q=94133")
+  resp = resp.json()
+
+  return resp
+```
+
+You can call requests.get on any url,
+note: we're using an f string to allow for variables.
+
+We created a Brev variable to securely hold the weather API access key.
 
 ## Use of multiple parameter types
 

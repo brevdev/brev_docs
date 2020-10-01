@@ -315,3 +315,7 @@ email: nader+docs@brev.dev
 ### Full Documentation
 
 Click to go to the [full documentation](/full?id=brev)
+
+### Full App with User Auth
+
+If you're trying to create a full app with user authentication, [use this guide and starter code!](/auth)

@@ -10,7 +10,7 @@ If you get stuck or have any questions, [please join our community slack](https:
 
 **eta: 2 minutes**
 
-Clone [this react starter project](https://github.com/cotter-code/react-starter-app). It has Cotter and Brev already hooked up.
+Clone [this react starter project](https://github.com/brevdev/react-starter-app). It has Cotter and Brev already hooked up.
 
 - run `npm install`
 - run `npm start` and go to http://localhost:3000
@@ -38,6 +38,8 @@ Follow Step 1 from the starter: grab an API key from the Cotter dashboard and pu
 ```python
 import variables
 from pydantic import BaseModel
+from jose import jwt
+import requests
 
 # The below classes are to map the incoming JSON for every new user
 class User(BaseModel):
@@ -76,8 +78,9 @@ import variables
 import shared
 import sms
 from jose import jwt
-from global_storage import storage_context # Brev built in database
 import requests
+from global_storage import storage_context # Brev built in database
+
 
 # return all users
 def get(user_store = storage_context("users")):
@@ -101,6 +104,8 @@ def post(payload: shared.AuthPayload, user_store = storage_context("users")):
 
   return {"success":True, "user": payload.email }
 ```
+
+- Be sure to install the `jose` package, either by running `brev add package jose` on the CLI or using the package manager in the web app
 
 ## Step 4: Give the endpoint a useful name
 

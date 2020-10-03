@@ -10,7 +10,7 @@ If you get stuck or have any questions, [please join our community slack](https:
 
 **eta: 2 minutes**
 
-Clone [this react starter project](https://github.com/brevdev/react-starter-app). It has Cotter and Brev already hooked up.
+Clone [this react starter project](https://github.com/cotter-code/react-starter-app). It has Cotter and Brev already hooked up.
 
 - run `npm install`
 - run `npm start` and go to http://localhost:3000

@@ -602,14 +602,14 @@ develop there rather than go configure a new one in the browser. We get that! Th
 - add packages
 - anything\* else you can do in the web app :)
 
-\* almost anything
+\* almost anything.
 
 ## Installation
 
 Install the CLI with pip
 
 ```zsh
-$ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0.tar.gz
+$ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.2.0.tar.gz
 
 // ps: If you get direct dependency error, please upgrade pip with `pip install --upgrade pip`
 ```
@@ -626,31 +626,31 @@ First authenticate yourself
 brev login
 ```
 
+NOTE: We highly recommend setting up Zsh for autocomplete. It'll let you tab through commands like butter
+
 ### Initialize
 
-Once authenticated, you'll need to initialize
+Once authenticated, you'll need to initialize a Brev project. Go to any directory and run
 
 ```zsh
 brev init
 ```
 
-This will create a local directory at ~/GetBrev with a folder per projecct. In each project folder, you'll find the endpoints, your shared code, and variables as individual .py files.
+to create a project with that directory name.
 
-### Set Environment
-
-Similar to the project dropdown from the web app, you'll need to specify which project you're working with. This allows you to add packages, variables/secrets, and endpoints; respecting each project's isolated runtime.
+If you've already made a Brev project (either on another computer or in the Brev app), pull it with
 
 ```zsh
-brev set ProjectName
+brev init <project_name>
 ```
+
+In each Brev project folder, you'll find the endpoints, your shared code, and variables as individual .py files.
 
 You can view active environment settings with the `status` command:
 
 ```zsh
 brev status
 ```
-
-NOTE: We highly recommend setting up Zsh & autocomplete. It'll let you tab through commands like butter
 
 ## Creating
 
@@ -680,42 +680,12 @@ brev remove variable NewVar
 
 Then follow the prompt for the variable value. Note: while you can update the value at any time, we never reveal the value for your security.
 
-### Create New Project
-
-You can create a new project with
-
-```zsh
-brev new project MyNewProject
-```
-
-Note: this does not set it as the active project. You'll need to use `brev set` for that:
-
-```zsh
-brev set project MyNewProject
-```
-
-## Running
-
 ### List
 
-You can use the `list` command to list available projects, packages, and endpoints. See below
-
-View available projects:
+You can use the `list` command to list available projects, packages, and endpoints.
 
 ```zsh
-brev list project
-```
-
-View packages added to the environment. You can `remove` them or `add` new ones.
-
-```zsh
-brev list package
-```
-
-View endpoints and their associated URLs. You can execute them with `run`.
-
-```zsh
-brev list endpoint
+brev list
 ```
 
 ### Run
@@ -746,7 +716,7 @@ brev run MyEndpoint POST --b  body.json
 
 Makes a POST call to `/MyEndpoint` with the body.json
 
-### Logs
+<!-- ### Logs
 
 After running an endpoint, Brev automatically collects logs and standard out! View them by running the `logs` command:
 To view all the logs of a project, run:
@@ -759,7 +729,7 @@ You can also view the logs of an individual endpoint
 
 ```zsh
 brev logs endpoint MyEndpoint
-```
+``` -->
 
 ## Syncronizing
 
@@ -789,7 +759,7 @@ To override your remote changes with those saved to your local environment, over
 brev override remote
 ```
 
-Note: override only syncronizes your active project. You can set the active project with `set`
+Note: running endpoints with `brev run...` will override remote.
 
 # Principles
 

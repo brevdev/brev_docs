@@ -56,10 +56,22 @@ Login to https://app.brev.dev
 Install the CLI with pip:
 
 ```zsh
-$ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.1.0.tar.gz
+$ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.2.0.tar.gz
 ```
 
 > **Note** ps: If you get direct dependency error, please upgrade pip with `pip install --upgrade pip`
+
+Go to any directory and run
+
+```zsh
+brev init
+```
+
+to create a project. The CLI will use the directory name for the project. If you want to pull an already created project, simply add the name
+
+```zsh
+brev init <project_name>
+```
 
 ### Create a basic endpoint
 
@@ -76,7 +88,7 @@ Your endpoint is saved and hosted!
 
 > **Webapp**: At the top of the code editor, you'll see the hosted URL. It's ready to go and be used in any app you're building. Go to "home" and you'll see all your endpoints, including this one.
 
-> **CLI**: You should now have a Brev directory at `~/GetBrev`. Creating a new endpoint will add a python file for the endpoint in that directory. `brev list` will get you the URLs for every endpoint. If something didn't work, make sure to login and initialize! `brev login` followed by `brev init`.
+> **CLI**: You'll need to be in the active project directory. Creating a new endpoint will add a python file for the endpoint in that directory. `brev list` will get you the URLs for every endpoint. If something didn't work, make sure to login and initialize! `brev login` followed by `brev init`.
 
 Now let's make the endpoint do something.
 

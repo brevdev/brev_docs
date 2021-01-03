@@ -58,10 +58,16 @@ Install the CLI with pip:
 ```zsh
 $ pip install https://github.com/brevdev/brev_cli/raw/master/dist/brev-cli-0.2.0.tar.gz
 ```
-
+**Please use python version 3.7 or later**
 > **Note** ps: If you get direct dependency error, please upgrade pip with `pip install --upgrade pip`
 
-Go to any directory and run
+First login with the following command. It will open a browser tab for logging in with a magic link.
+```zsh
+brev login
+```
+
+
+Now that you're authenticated, go to any directory and run
 
 ```zsh
 brev init
@@ -82,6 +88,7 @@ With Brev, your code is deployed by default. Simply create an endpoint, and it's
 > \*Checkout our current [scale limitations](https://docs.brev.dev/#/full?id=limitations) and how you can extend them.
 
 From the webapp: click "+" to create an endpoint. Give it a name, and click save!
+
 From the CLI: type `brev add endpoint <your EP name>`
 
 Your endpoint is saved and hosted!

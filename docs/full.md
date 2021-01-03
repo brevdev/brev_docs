@@ -73,7 +73,7 @@ def get():
 
 > **Hint**: Your url will look like `https://123456.brev.dev/api/_execute/89247f45-d47f-777-b8c9-91a20287faa6` ## Defining Endpoints
 
-> **Technical Detail**: Brev is built on top of [FastApi](https://fastapi.tiangolo.com)/[Starlette](https://www.starlette.io) and supports much of its API. To dig deeper in request/response, validation and documenation it might be helpful to checkout their docs.
+> **Technical Detail**: Brev is built on top of [FastApi](https://fastapi.tiangolo.com)/ (v0.61.0) [Starlette](https://www.starlette.io) and supports much of its API. To dig deeper in request/response, validation and documenation it might be helpful to checkout their docs.
 
 ### Handling http methods
 
@@ -663,7 +663,7 @@ brev status
 brev add package numpy
 brev remove package numpy
 ```
-
+**Install any version just like you would with pip, YourPackage==YourVersion**
 - `Endpoints`: You can create new endpoints in the active project
 
 ```zsh
